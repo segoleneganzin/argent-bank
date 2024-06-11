@@ -1,0 +1,21 @@
+import { Link } from 'react-router-dom';
+import { useUser } from '../utils/hooks/useUser';
+
+const LoggedMenuListItems = () => {
+  const { logout } = useUser();
+  return (
+    <div>
+      <Link to={'/user'} className='main-nav-item'>
+        <i className='fa fa-user-circle'></i>
+        {/* user name, context ? */}
+        Tony
+      </Link>
+      <Link onClick={logout} to='/' className='main-nav-item'>
+        <i className='fa fa-sign-out'></i>
+        Sign Out
+      </Link>
+    </div>
+  );
+};
+
+export default LoggedMenuListItems;
