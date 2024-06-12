@@ -2,35 +2,18 @@
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
 
-/// text color
-/// @type Color
-$text-color: #000000;
+$text-color: #2c3e50;
 
-/// link color
-/// @type Color
-$link-color: #000000;
+$bg-dark-color: #12002b;
 
-/// Main brand color
-/// @type Color
-$brand-color: #ff6060;
+$h3-title-color: #222;
 
-/// grey
-/// @type Color
-$grey: #f6f6f6;
+$main-brand-color: #00bc77;
 
-/// Light grey
-/// @type Color
-$light-grey: #fbfbfb;
+$second-brand-color: #005834;
+
+$white: #fff;
 
 /// *********************** BREAKPOINTS
-$breakpoint-mobileXS: 360px;
-$breakpoint-mobile: 425px;
-$breakpoint-tablet: 768px;
-$breakpoint-laptop: 1024px;
-$breakpoint-laptopXL: 1400px;
-$breakpoint-desktopXL: 1850px;
-
-/// *********************** RADIUS
-$smallRadius: 5px;
-$mediumRadius: 10px;
-$largeRadius: 25px;
+$breakpoint-tablet: 720px;
+$breakpoint-laptop: 920px;

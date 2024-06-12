@@ -1,19 +1,10 @@
-.main-nav {
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-
-  .main-nav-item {
+  &__item {
     text-decoration: none;
     margin-right: 0.5rem;
 
@@ -22,11 +13,11 @@
     }
   }
 
-  .main-nav-logo {
+  &__logo {
     display: flex;
     align-items: center;
 
-    .main-nav-logo-image {
+    &-image {
       max-width: 100%;
       width: 200px;
     }

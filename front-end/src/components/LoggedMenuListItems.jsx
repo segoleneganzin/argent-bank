@@ -5,12 +5,12 @@ const LoggedMenuListItems = () => {
   const { logout } = useUser();
   return (
     <div>
-      <Link to={'/user'} className='main-nav-item'>
+      <Link to={'/user'} className='nav__item'>
         <i className='fa fa-user-circle'></i>
         {/* user name, context ? */}
         Tony
       </Link>
-      <Link onClick={logout} to='/' className='main-nav-item'>
+      <Link onClick={logout} to='/' className='nav__item'>
         <i className='fa fa-sign-out'></i>
         Sign Out
       </Link>

@@ -8,13 +8,9 @@ const Menu = () => {
   const { isAuth } = useUser();
 
   return (
-    <nav className='main-nav'>
-      <Link to={'/'} className='main-nav-logo'>
-        <img
-          className='main-nav-logo-image'
-          src={logo}
-          alt='Argent Bank Logo'
-        />
+    <nav className='nav'>
+      <Link to={'/'} className='nav__logo'>
+        <img className='nav__logo-image' src={logo} alt='Argent Bank Logo' />
         <h1 className='sr-only'>Argent Bank</h1>
       </Link>
       {isAuth ? <LoggedMenuListItems /> : <LoggedOutMenuListItems />}

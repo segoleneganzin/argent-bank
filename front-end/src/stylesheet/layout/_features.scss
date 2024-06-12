@@ -1,10 +1,7 @@
 .features {
-  display: flex;
-  flex-direction: column;
-}
+  @include flex-col;
 
-@media (min-width: 920px) {
-  .features {
+  @include min-media-breakpoint($breakpoint-laptop) {
     flex-direction: row;
   }
 }

@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 const Account = ({ account }) => {
   return (
     <section className='account'>
-      <div className='account-content-wrapper'>
-        <h3 className='account-title'>{account.title}</h3>
-        <p className='account-amount'>${account.amount}</p>
-        <p className='account-amount-description'>
+      <div className='account__content-wrapper'>
+        <h3 className='account__title'>{account.title}</h3>
+        <p className='account__amount'>${account.amount}</p>
+        <p className='account__amount-description'>
           {account.amountDescription}
         </p>
       </div>
-      <div className='account-content-wrapper cta'>
-        <button className='transaction-button'>View transactions</button>
+      <div className='account__content-wrapper cta'>
+        <button className='account__transaction-button'>
+          View transactions
+        </button>
       </div>
     </section>
   );

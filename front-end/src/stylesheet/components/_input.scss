@@ -1,23 +1,20 @@
-.input-remember {
-  display: flex;
-}
+.input {
+  &__remember {
+    display: flex;
+    align-items: end;
+    flex-direction: row-reverse;
+    justify-content: start;
+    label {
+      margin-left: 0.25rem;
+    }
+  }
 
-.input-remember label {
-  margin-left: 0.25rem;
-}
+  &__wrapper {
+    @include flex-col;
+    margin-bottom: 1rem;
 
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-bottom: 1rem;
-}
-
-.input-wrapper label {
-  font-weight: bold;
-}
-
-.input-wrapper input {
-  padding: 5px;
-  font-size: 1.2rem;
+    input {
+      padding: 5px;
+    }
+  }
 }
