@@ -4,25 +4,13 @@ import PropTypes from 'prop-types';
 
 const UserContext = createContext(); // Creating a context for user-related data.
 
-/**
- * Use into main.jsx
- * Provider component for managing user authentication status and user id.
- * This allows us to manage the application's security and display or not display elements according to status and id.
+/** TODO replace with token and redux
  * @param {object} props
  * @param {ReactNode} props.children - Child components to be wrapped by the provider.
  * @returns {JSX.Element}
  */
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
-
-  // State for storing the current user's ID.
-  // const [currentUserId, setCurrentUserId] = useState(() =>
-  //   JSON.parse(localStorage.getItem('currentUserId'))
-  // );
-  // Effect for updating local storage when the current user ID changes.
-  // useEffect(() => {
-  //   localStorage.setItem('currentUserId', currentUserId);
-  // }, [currentUserId]);
 
   // State for storing the authentication status.
   const [isAuth, setIsAuth] = useState(

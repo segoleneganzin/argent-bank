@@ -4,8 +4,14 @@ import Input from '../components/Input';
 const SignInForm = () => {
   const { login } = useUser();
 
+  const loginUser = (e) => {
+    e.preventDefault();
+    // remember-me ? localStorage.setItem("userEmail", email) : localStorage.removeItem("userEmail");
+    login();
+  };
+
   return (
-    <form onSubmit={login}>
+    <form onSubmit={loginUser}>
       <Input
         id='username'
         type='text'
