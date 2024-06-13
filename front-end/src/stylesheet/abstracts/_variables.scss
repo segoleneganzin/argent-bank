@@ -4,6 +4,7 @@
 
 $text-color: #2c3e50;
 
+// $bg-dark-color: #dfe6ed;
 $bg-dark-color: #12002b;
 
 $h3-title-color: #222;
@@ -15,5 +16,7 @@ $second-brand-color: #005834;
 $white: #fff;
 
 /// *********************** BREAKPOINTS
+$breakpoint-mobile: 375px;
+$breakpoint-mobileXl: 425px;
 $breakpoint-tablet: 720px;
 $breakpoint-laptop: 920px;

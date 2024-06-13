@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
   const login = () => {
     // setCurrentUserId(userIdLog);
     setIsAuth(true);
-    navigate('/user');
+    navigate('/profile');
   };
 
   // use to logout user and set isAuth to false and user ID to null
@@ -37,7 +37,7 @@ export const UserProvider = ({ children }) => {
     // setCurrentUserId(null);
   };
 
-  console.log('isAuth => ' + isAuth + ' : ' + typeof isAuth);
+  // console.log('isAuth => ' + isAuth + ' : ' + typeof isAuth);
 
   return (
     <UserContext.Provider value={{ isAuth, login, logout }}>

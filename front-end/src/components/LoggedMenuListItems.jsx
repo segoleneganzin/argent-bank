@@ -4,8 +4,8 @@ import { useUser } from '../utils/hooks/useUser';
 const LoggedMenuListItems = () => {
   const { logout } = useUser();
   return (
-    <div>
-      <Link to={'/user'} className='nav__item'>
+    <div className='nav__list-item'>
+      <Link to={'/profile'} className='nav__item'>
         <i className='fa fa-user-circle'></i>
         {/* user name, context ? */}
         Tony

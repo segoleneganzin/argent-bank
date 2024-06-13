@@ -1,7 +1,7 @@
 [
   {
     "userId": "6668571cb955d73ff0e3de2b",
-    "account": [
+    "accounts": [
       {
         "title": "Argent Bank Checking (x8349)",
         "amount": 2082.79,
@@ -21,7 +21,7 @@
   },
   {
     "userId": "6668571cb955d73ff0e3de2a",
-    "account": [
+    "accounts": [
       {
         "title": "Argent Bank Checking (x1545)",
         "amount": 1070.79,

@@ -12,8 +12,8 @@ html,
 }
 .account__transaction-button,
 .sign-in__button,
-.user__header,
-.user__header .edit-button {
+.profile__header,
+.profile__header .edit-button {
   color: $white;
 }
 
@@ -38,11 +38,17 @@ html,
 .hero__content-subtitle,
 .nav a,
 .sign-in__button,
-.user__header .edit-button {
+.profile__header .edit-button {
   font-weight: bold;
 }
 
 /***************************************** font size */
+.nav__item {
+  font-size: 0.8rem;
+  @include min-media-breakpoint($breakpoint-mobileXl) {
+    font-size: 1rem;
+  }
+}
 .account__title,
 .hero__content-subtitles {
   font-size: 1rem;

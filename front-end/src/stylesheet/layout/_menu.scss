@@ -3,13 +3,24 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
-
+  &__list-item {
+    display: flex;
+    @include min-media-breakpoint($breakpoint-mobileXl) {
+      gap: 5px;
+    }
+  }
   &__item {
+    display: flex;
+    align-items: center;
     text-decoration: none;
     margin-right: 0.5rem;
 
     &:hover {
       text-decoration: underline;
+    }
+
+    @include min-media-breakpoint($breakpoint-mobileXl) {
+      gap: 5px;
     }
   }
 
@@ -19,7 +30,10 @@
 
     &-image {
       max-width: 100%;
-      width: 200px;
+      width: 150px;
+      @include min-media-breakpoint($breakpoint-mobile) {
+        width: 200px;
+      }
     }
   }
 }

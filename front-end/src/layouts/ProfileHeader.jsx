@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-const UserHeader = ({ user }) => {
+const ProfileHeader = ({ user }) => {
   return (
-    <div className='user__header'>
+    <div className='profile__header'>
       <h1>
         Welcome back
         <br />
@@ -12,7 +12,7 @@ const UserHeader = ({ user }) => {
     </div>
   );
 };
-UserHeader.propTypes = {
+ProfileHeader.propTypes = {
   user: PropTypes.object.isRequired,
 };
-export default UserHeader;
+export default ProfileHeader;
