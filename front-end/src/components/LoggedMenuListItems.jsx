@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom';
-import { useUser } from '../utils/hooks/useUser';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoggedMenuListItems = () => {
-  const { logout } = useUser();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(logout());
+    // navigate('/login');
+  };
   return (
     <div className='nav__list-item'>
       <Link to={'/profile'} className='nav__item'>

@@ -1,15 +1,19 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import Router from './Router';
-import { UserProvider } from './context/UserContext';
+import { Provider } from 'react-redux';
+import store from './utils/store';
+// import { UserProvider } from './context/UserContext';
 
 import './stylesheet/main.scss';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <UserProvider>
+    {/* <UserProvider> */}
+    <Provider store={store}>
       <Router />
-    </UserProvider>
+    </Provider>
+    {/* </UserProvider> */}
   </BrowserRouter>
 );
