@@ -25,7 +25,7 @@ export const accountsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchAccountsAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = 'succeeded';
         state.value = action.payload;
         state.error = null;
       })
@@ -34,6 +34,14 @@ export const accountsSlice = createSlice({
         state.error = action.error.message;
       });
   },
+  selectors: {
+    selectAccounts: (state) => state.value,
+    selectAccountsStatus: (state) => state.status,
+    selectAccountsError: (state) => state.error,
+  },
 });
+
+export const { selectAccounts, selectAccountsStatus, selectAccountsError } =
+  accountsSlice.selectors;
 
 export default accountsSlice.reducer;

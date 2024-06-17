@@ -2,16 +2,18 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postLoginAsync } from '../features/login/loginSlice';
-import { selectLoginStatus, selectLoginError } from '../utils/selectors';
+import {
+  selectLoginStatus,
+  selectLoginError,
+} from '../features/login/loginSlice';
 import Input from '../components/Input';
 
 const SignInForm = () => {
   const navigate = useNavigate();
 
-  // const { login } = useUser();
   const dispatch = useDispatch();
-  const status = useSelector(selectLoginStatus);
-  const error = useSelector(selectLoginError);
+  const status = useSelector((state) => selectLoginStatus(state));
+  const error = useSelector((state) => selectLoginError(state));
 
   const [username, setUsername] = useState(
     localStorage.getItem('userEmail') || ''
@@ -20,7 +22,6 @@ const SignInForm = () => {
   const [rememberMe, setRememberMe] = useState(false);
 
   const loginUser = async (e) => {
-    console.log(rememberMe);
     e.preventDefault();
     if (rememberMe) {
       localStorage.setItem('userEmail', username);

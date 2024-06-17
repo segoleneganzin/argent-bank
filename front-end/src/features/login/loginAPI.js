@@ -5,8 +5,6 @@ export const postLogin = async (email, password) => {
     if (!email || !password) {
       throw new Error('Username and password are required.');
     }
-    console.log('email : ' + email);
-    console.log('password : ' + password);
     const response = await axios.post(
       'http://localhost:3001/api/v1/user/login',
       {

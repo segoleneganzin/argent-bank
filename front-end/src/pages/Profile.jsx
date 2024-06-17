@@ -1,47 +1,71 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import PageLayout from '../layouts/PageLayout';
 import Accounts from '../layouts/Accounts';
 import ProfileHeader from '../layouts/ProfileHeader';
-import { getAccountsByUserId } from '../services/accountsApi';
+import { selectLogin } from '../features/login/loginSlice';
+import { postProfileAsync } from '../features/profile/profileSlice';
+import {
+  selectProfileStatus,
+  selectProfileError,
+  selectProfile,
+} from '../features/profile/profileSlice';
+import {
+  fetchAccountsAsync,
+  selectAccounts,
+  selectAccountsStatus,
+  selectAccountsError,
+} from '../features/accounts/accountsSlice';
 
 const Profile = () => {
+  const [user, setUser] = useState({
+    id: null,
+    firstName: null,
+    lastName: null,
+  });
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const login = useSelector((state) => selectLogin(state));
+
+  const profile = useSelector((state) => selectProfile(state));
+  const profileStatus = useSelector((state) => selectProfileStatus(state));
+  const profileError = useSelector((state) => selectProfileError(state));
+
+  const accounts = useSelector((state) => selectAccounts(state));
+  const accountsStatus = useSelector((state) => selectAccountsStatus(state));
+  const accountsError = useSelector((state) => selectAccountsError(state));
+
   useEffect(() => {
     document.title = 'Argent Bank - User Page';
   }, []);
-  const user = {
-    id: '6668571cb955d73ff0e3de2b',
-    firstName: 'Tony',
-    lastName: 'Stark',
-  };
-  // const user = {
-  //   id: '6668571cb955d73ff0e3de2a',
-  //   firstName: 'Steve',
-  //   lastName: 'Rogers',
-  // };
-
-  const [accounts, setAccounts] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAccounts = async () => {
-      try {
-        const userAccounts = await getAccountsByUserId(user.id);
-        setAccounts(userAccounts);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (login && login.token) {
+      dispatch(postProfileAsync(login.token));
+    }
+    if (!login) {
+      navigate('/');
+    }
+  }, [login, dispatch, navigate]);
 
-    fetchAccounts();
-  }, [user.id]);
+  useEffect(() => {
+    if (profile) {
+      setUser({
+        id: profile.id,
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+      });
+      dispatch(fetchAccountsAsync(profile.id));
+    }
+  }, [profile, dispatch]);
 
-  return loading ? (
-    <p>Datas are loading</p>
-  ) : error ? (
-    <p>Error</p>
+  return profileError === 'failed' || accountsError === 'failed' ? (
+    <p>An error has occured</p>
+  ) : profileStatus === 'loading' || accountsStatus === 'loading' ? (
+    <p>Loading ...</p>
   ) : (
     <PageLayout mainClassName='main bg-dark'>
       <>

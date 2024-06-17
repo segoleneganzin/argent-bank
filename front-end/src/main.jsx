@@ -3,17 +3,14 @@ import { BrowserRouter } from 'react-router-dom';
 import Router from './Router';
 import { Provider } from 'react-redux';
 import store from './utils/store';
-// import { UserProvider } from './context/UserContext';
 
 import './stylesheet/main.scss';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    {/* <UserProvider> */}
     <Provider store={store}>
       <Router />
     </Provider>
-    {/* </UserProvider> */}
   </BrowserRouter>
 );

@@ -1,22 +1,31 @@
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { selectProfile } from '../features/profile/profileSlice';
 
 const LoggedMenuListItems = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [userFirstName, setUserFirstName] = useState('');
+
+  const profile = useSelector((state) => selectProfile(state));
+
+  useEffect(() => {
+    if (profile) {
+      setUserFirstName(profile.firstName);
+    }
+  }, [profile, userFirstName]);
 
   const logout = () => {
     dispatch(logout());
-    // navigate('/login');
   };
+
   return (
     <div className='nav__list-item'>
       <Link to={'/profile'} className='nav__item'>
         <i className='fa fa-user-circle'></i>
-        {/* user name, context ? */}
-        Tony
+        {userFirstName}
       </Link>
-      <Link onClick={logout} to='/' className='nav__item'>
+      <Link onClick={logout} className='nav__item'>
         <i className='fa fa-sign-out'></i>
         Sign Out
       </Link>

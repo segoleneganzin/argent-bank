@@ -20,7 +20,7 @@ export const loginSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      state.user = null;
+      state.login = null;
       state.status = 'idle';
       state.error = null;
     },
@@ -33,7 +33,7 @@ export const loginSlice = createSlice({
       })
       .addCase(postLoginAsync.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.login = action.payload;
+        state.login = action.payload.body;
         state.error = null;
       })
       .addCase(postLoginAsync.rejected, (state, action) => {
@@ -41,8 +41,15 @@ export const loginSlice = createSlice({
         state.error = action.error.message;
       });
   },
+  selectors: {
+    selectLogin: (state) => state.login,
+    selectLoginStatus: (state) => state.status,
+    selectLoginError: (state) => state.error,
+  },
 });
 
 export const { logout } = loginSlice.actions;
+export const { selectLogin, selectLoginStatus, selectLoginError } =
+  loginSlice.selectors;
 
 export default loginSlice.reducer;

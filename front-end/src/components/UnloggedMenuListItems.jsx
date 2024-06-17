@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const LoggedOutMenuListItems = () => {
+const UnloggedMenuListItems = () => {
   return (
     <div>
       <Link to={'/sign-in'} className='nav__item'>
@@ -11,4 +11,4 @@ const LoggedOutMenuListItems = () => {
   );
 };
 
-export default LoggedOutMenuListItems;
+export default UnloggedMenuListItems;
