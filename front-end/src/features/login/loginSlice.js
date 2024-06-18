@@ -14,7 +14,7 @@ export const postLoginAsync = createAsyncThunk(
 export const loginSlice = createSlice({
   name: 'login',
   initialState: {
-    login: JSON.parse(localStorage.getItem('login')) || null,
+    login: JSON.parse(sessionStorage.getItem('login')) || null,
     status: 'idle',
     error: null,
   },
@@ -23,7 +23,7 @@ export const loginSlice = createSlice({
       state.login = null;
       state.status = 'idle';
       state.error = null;
-      localStorage.removeItem('login');
+      sessionStorage.removeItem('login');
     },
   },
   extraReducers: (builder) => {
@@ -36,7 +36,7 @@ export const loginSlice = createSlice({
         state.status = 'succeeded';
         state.login = action.payload.body;
         state.error = null;
-        localStorage.setItem('login', JSON.stringify(state.login));
+        sessionStorage.setItem('login', JSON.stringify(state.login));
       })
       .addCase(POST_LOGIN + '/rejected', (state, action) => {
         state.status = 'failed';

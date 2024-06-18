@@ -7,6 +7,9 @@ export const postLogin = async (email, password) => {
     }
     return await callApi('post', '/user/login', { email, password });
   } catch (error) {
+    if (error.message.includes('Error calling post /user/login')) {
+      throw new Error('Wrong combination');
+    }
     throw new Error(error);
   }
 };
