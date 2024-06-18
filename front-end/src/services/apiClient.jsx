@@ -2,21 +2,26 @@ import axios from 'axios';
 
 // create axios instance
 const apiClient = axios.create({
-  baseURL: 'http://locahost:3001',
+  baseURL: 'http://localhost:3001/api/v1',
 });
 
-// add jwt to each request
-apiClient.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('jwt'); // Récupère le token depuis le stockage
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
+const callApi = async (method, url, data, token) => {
+  const headers = {};
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
   }
-);
 
-export default apiClient;
+  try {
+    const response = await apiClient({
+      method,
+      url,
+      data,
+      headers,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error calling ${method} ${url}:`, error);
+  }
+};
+
+export default callApi;
