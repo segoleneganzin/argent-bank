@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from '../features/login/loginSlice';
 import { selectProfile } from '../features/profile/profileSlice';
 
 const LoggedMenuListItems = () => {
@@ -10,24 +11,24 @@ const LoggedMenuListItems = () => {
   const profile = useSelector((state) => selectProfile(state));
 
   useEffect(() => {
-    if (profile) {
+    if (profile && profile.firstName !== userFirstName) {
       setUserFirstName(profile.firstName);
     }
   }, [profile, userFirstName]);
 
-  const logout = () => {
+  const logoutUser = () => {
     dispatch(logout());
   };
 
   return (
     <div className='nav__list-item'>
       <Link to={'/profile'} className='nav__item'>
-        <i className='fa fa-user-circle'></i>
-        {userFirstName}
+        <i className='fa fa-user-circle icon'></i>
+        <span className='nav__item-text'>{userFirstName}</span>
       </Link>
-      <Link onClick={logout} className='nav__item'>
-        <i className='fa fa-sign-out'></i>
-        Sign Out
+      <Link onClick={logoutUser} className='nav__item'>
+        <i className='fa fa-sign-out icon'></i>
+        <span className='nav__item-text'>Sign Out</span>
       </Link>
     </div>
   );
