@@ -46,9 +46,6 @@ const Profile = () => {
     if (login && login.token) {
       dispatch(postProfileAsync(login.token));
     }
-    if (!login) {
-      navigate('/');
-    }
   }, [login, dispatch, navigate]);
 
   useEffect(() => {
