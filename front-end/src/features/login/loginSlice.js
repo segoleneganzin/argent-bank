@@ -1,14 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { postLogin } from './loginAPI';
 
-const initialState = {
-  login: null,
-  status: 'idle',
-  error: null,
-};
+const POST_LOGIN = 'login/postLogin';
 
 export const postLoginAsync = createAsyncThunk(
-  'login/postLogin',
+  POST_LOGIN,
   async ({ email, password }) => {
     const response = await postLogin(email, password);
     return response;
@@ -17,26 +13,32 @@ export const postLoginAsync = createAsyncThunk(
 
 export const loginSlice = createSlice({
   name: 'login',
-  initialState,
+  initialState: {
+    login: JSON.parse(localStorage.getItem('login')) || null,
+    status: 'idle',
+    error: null,
+  },
   reducers: {
     logout: (state) => {
       state.login = null;
       state.status = 'idle';
       state.error = null;
+      localStorage.removeItem('login');
     },
   },
   extraReducers: (builder) => {
     // manage async action
     builder
-      .addCase(postLoginAsync.pending, (state) => {
+      .addCase(POST_LOGIN + '/pending', (state) => {
         state.status = 'loading';
       })
-      .addCase(postLoginAsync.fulfilled, (state, action) => {
+      .addCase(POST_LOGIN + '/fulfilled', (state, action) => {
         state.status = 'succeeded';
         state.login = action.payload.body;
         state.error = null;
+        localStorage.setItem('login', JSON.stringify(state.login));
       })
-      .addCase(postLoginAsync.rejected, (state, action) => {
+      .addCase(POST_LOGIN + '/rejected', (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });

@@ -16,7 +16,9 @@
     margin-right: 0.5rem;
 
     &:hover {
-      text-decoration: underline;
+      .nav__item-text {
+        text-decoration: underline;
+      }
     }
 
     @include min-media-breakpoint($breakpoint-mobileXl) {

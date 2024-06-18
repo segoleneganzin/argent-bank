@@ -1,19 +1,12 @@
-import axios from 'axios';
+import callApi from '../../services/apiClient';
 
 export const postLogin = async (email, password) => {
   try {
     if (!email || !password) {
-      throw new Error('Username and password are required.');
+      throw new Error('Username and password are required');
     }
-    const response = await axios.post(
-      'http://localhost:3001/api/v1/user/login',
-      {
-        email,
-        password,
-      }
-    );
-    return response.data;
+    return await callApi('post', '/user/login', { email, password });
   } catch (error) {
-    throw new Error('Login failed');
+    throw new Error(error);
   }
 };

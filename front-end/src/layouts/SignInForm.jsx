@@ -15,20 +15,18 @@ const SignInForm = () => {
   const status = useSelector((state) => selectLoginStatus(state));
   const error = useSelector((state) => selectLoginError(state));
 
-  const [username, setUsername] = useState(
-    localStorage.getItem('userEmail') || ''
-  );
+  const [email, setEmail] = useState(localStorage.getItem('userEmail') || '');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
   const loginUser = async (e) => {
     e.preventDefault();
     if (rememberMe) {
-      localStorage.setItem('userEmail', username);
+      localStorage.setItem('userEmail', email);
     } else {
       localStorage.removeItem('userEmail');
     }
-    dispatch(postLoginAsync({ email: username, password }));
+    dispatch(postLoginAsync({ email, password }));
   };
 
   useEffect(() => {
@@ -40,11 +38,11 @@ const SignInForm = () => {
   return (
     <form onSubmit={loginUser}>
       <Input
-        id='username'
-        type='text'
+        id='email'
+        type='email'
         label='Username'
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         className='input__wrapper'
       />
       <Input
@@ -71,7 +69,7 @@ const SignInForm = () => {
       >
         {status === 'loading' ? 'Signing In...' : 'Sign In'}
       </button>
-      {error && <div className='error-message'>{error}</div>}
+      {status === 'failed' && <p className='error-message'>{error}</p>}
     </form>
   );
 };

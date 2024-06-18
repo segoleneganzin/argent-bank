@@ -14,7 +14,8 @@
   'layout/signInForm', 'layout/ProfileHeader';
 
 // Components
-@import 'components/account', 'components/feature', 'components/input';
+@import 'components/account', 'components/feature', 'components/input',
+  'components/updateProfileForm', 'components/error', 'components/loader';
 
 // Page-specific styles
 @import 'pages/signIn';

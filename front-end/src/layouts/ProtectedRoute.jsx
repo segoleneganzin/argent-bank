@@ -5,7 +5,6 @@ import { selectLogin } from '../features/login/loginSlice';
 
 const ProtectedRoute = ({ children }) => {
   const login = useSelector((state) => selectLogin(state));
-  console.log(login);
   if (!login) {
     return <Navigate to='/' replace />; // prevents page from being added to history
   }

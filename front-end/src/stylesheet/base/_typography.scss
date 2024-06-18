@@ -12,8 +12,7 @@ html,
 }
 .account__transaction-button,
 .sign-in__button,
-.profile__header,
-.profile__header .edit-button {
+.profile__header {
   color: $white;
 }
 
@@ -24,6 +23,21 @@ html,
 .nav a .router-link-exact-active {
   //TODO where ?
   color: #42b983;
+}
+.profile__header .edit-button {
+  color: $white;
+}
+
+.update-button {
+  color: $purple;
+}
+
+.input__update input {
+  color: $grey;
+}
+
+.error-message {
+  color: $text-error;
 }
 
 /***************************************** font weight */
@@ -36,17 +50,27 @@ html,
 .feature__item-title,
 .input__wrapper label,
 .hero__content-subtitle,
-.nav a,
+.nav__item-text,
 .sign-in__button,
-.profile__header .edit-button {
+.profile__header .edit-button,
+.update-button,
+.input__update input {
   font-weight: bold;
 }
 
 /***************************************** font size */
 .nav__item {
-  font-size: 0.8rem;
-  @include min-media-breakpoint($breakpoint-mobileXl) {
-    font-size: 1rem;
+  &-text {
+    font-size: 0.8rem;
+    @include min-media-breakpoint($breakpoint-mobileXl) {
+      font-size: 1rem;
+    }
+  }
+  .icon {
+    font-size: 0.8rem;
+    @include min-media-breakpoint($breakpoint-mobileXl) {
+      font-size: 1.4rem;
+    }
   }
 }
 .account__title,
