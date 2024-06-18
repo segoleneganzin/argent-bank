@@ -1,14 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { postProfile, updateProfile } from './profileAPI';
 
-const initialState = {
-  profile: null,
-  status: 'idle',
-  error: null,
-};
+const POST_PROFILE = 'profile/postProfile';
+const UPDATE_PROFILE = 'profile/updateProfile';
 
 export const postProfileAsync = createAsyncThunk(
-  'profile/postProfile',
+  POST_PROFILE,
   async (token) => {
     const response = await postProfile(token);
     return response;
@@ -16,7 +13,7 @@ export const postProfileAsync = createAsyncThunk(
 );
 
 export const updateProfileAsync = createAsyncThunk(
-  'profile/updateProfile',
+  UPDATE_PROFILE,
   async ({ token, firstName, lastName }) => {
     const response = await updateProfile({ token, firstName, lastName });
     return response;
@@ -25,34 +22,44 @@ export const updateProfileAsync = createAsyncThunk(
 
 export const profileSlice = createSlice({
   name: 'profile',
-  initialState,
-  reducers: {},
+  initialState: {
+    profile: null,
+    status: 'idle',
+    error: null,
+    updateStatus: 'idle',
+  },
+  reducers: {
+    resetUpdateStatus: (state) => {
+      state.updateStatus = 'idle';
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     // manage post async action
     builder
-      .addCase(postProfileAsync.pending, (state) => {
+      .addCase(POST_PROFILE + '/pending', (state) => {
         state.status = 'loading';
       })
-      .addCase(postProfileAsync.fulfilled, (state, action) => {
+      .addCase(POST_PROFILE + '/fulfilled', (state, action) => {
         state.status = 'succeeded';
         state.profile = action.payload.body;
         state.error = null;
       })
-      .addCase(postProfileAsync.rejected, (state, action) => {
+      .addCase(POST_PROFILE + '/rejected', (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
       //   manage put async function
-      .addCase(updateProfileAsync.pending, (state) => {
-        state.status = 'loading';
+      .addCase(UPDATE_PROFILE + '/pending', (state) => {
+        state.updateStatus = 'loading';
       })
-      .addCase(updateProfileAsync.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+      .addCase(UPDATE_PROFILE + '/fulfilled', (state, action) => {
+        state.updateStatus = 'succeeded';
         state.profile = action.payload.body;
         state.error = null;
       })
-      .addCase(updateProfileAsync.rejected, (state, action) => {
-        state.status = 'failed';
+      .addCase(UPDATE_PROFILE + '/rejected', (state, action) => {
+        state.updateStatus = 'failed';
         state.error = action.error.message;
       });
   },
@@ -60,10 +67,15 @@ export const profileSlice = createSlice({
     selectProfile: (state) => state.profile,
     selectProfileStatus: (state) => state.status,
     selectProfileError: (state) => state.error,
+    selectProfileUpdateStatus: (state) => state.updateStatus,
   },
 });
-
-export const { selectProfile, selectProfileStatus, selectProfileError } =
-  profileSlice.selectors;
+export const { resetUpdateStatus } = profileSlice.actions;
+export const {
+  selectProfile,
+  selectProfileStatus,
+  selectProfileError,
+  selectProfileUpdateStatus,
+} = profileSlice.selectors;
 
 export default profileSlice.reducer;

@@ -1,23 +1,13 @@
-import axios from 'axios';
+import callApi from '../../services/apiClient';
 
 export const postProfile = async (token) => {
   try {
     if (!token) {
       throw new Error('Invalid datas');
     }
-    const response = await axios.post(
-      'http://localhost:3001/api/v1/user/profile',
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return response.data;
+    return await callApi('post', '/user/profile', {}, token);
   } catch (error) {
-    console.error('Error posting profile:', error);
-    throw new Error('Failed to post profile');
+    throw new Error(error);
   }
 };
 
@@ -26,18 +16,16 @@ export const updateProfile = async ({ token, firstName, lastName }) => {
     if (!token) {
       throw new Error('Invalid datas');
     }
-    const response = await axios.put(
-      'http://localhost:3001/api/v1/user/profile',
+    if (!firstName || !lastName) {
+      throw new Error('firstName and lastName are required');
+    }
+    return await callApi(
+      'put',
+      '/user/profile',
       { firstName, lastName },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      token
     );
-    return response.data;
   } catch (error) {
-    console.error('Error posting profile:', error);
-    throw new Error('Failed to post profile');
+    throw new Error(error);
   }
 };
