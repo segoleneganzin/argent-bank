@@ -11,6 +11,7 @@ export const postLoginAsync = createAsyncThunk(
   }
 );
 
+// Redux slice for login state management
 export const loginSlice = createSlice({
   name: 'login',
   initialState: {
@@ -27,7 +28,7 @@ export const loginSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // manage async action
+    // Extra reducers to handle async actions (postLoginAsync)
     builder
       .addCase(POST_LOGIN + '/pending', (state) => {
         state.status = 'loading';

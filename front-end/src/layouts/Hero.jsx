@@ -1,3 +1,7 @@
+/**
+ * A React functional component that displays home hero.
+ * @returns {JSX.Element}
+ */
 const Hero = () => {
   return (
     <div className='hero'>

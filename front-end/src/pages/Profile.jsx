@@ -20,10 +20,15 @@ import {
   selectAccountsError,
 } from '../features/accounts/accountsSlice';
 
+/**
+ * A React functional component that renders the user profile page.
+ * @returns {JSX.Element}
+ */
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Selectors to retrieve data from Redux store
   const login = useSelector((state) => selectLogin(state));
   const profile = useSelector((state) => selectProfile(state));
   const profileStatus = useSelector((state) => selectProfileStatus(state));
@@ -31,17 +36,22 @@ const Profile = () => {
   const accounts = useSelector((state) => selectAccounts(state));
   const accountsStatus = useSelector((state) => selectAccountsStatus(state));
   const accountsError = useSelector((state) => selectAccountsError(state));
+
+  // Effect to fetch user profile data when login token changes
   useEffect(() => {
     if (login && login.token) {
       dispatch(postProfileAsync(login.token));
-      // dispatch(postProfileAsync(12345)); // test error
+      // Uncomment below line for testing error state:
+      // dispatch(postProfileAsync(12345));
     }
   }, [login, dispatch, navigate]);
 
+  // Effect to fetch user accounts data when profile data changes
   useEffect(() => {
     if (profile) {
       dispatch(fetchAccountsAsync(profile.id));
-      // dispatch(fetchAccountsAsync(1234)); // test error
+      // Uncomment below line for testing error state:
+      // dispatch(fetchAccountsAsync(1234));
     }
   }, [profile, dispatch]);
 
@@ -51,12 +61,12 @@ const Profile = () => {
         <Loader />
       ) : (
         <>
-          {profileStatus === 'rejected' ? (
+          {profileStatus === 'failed' ? (
             <Error errorMessage={profileError} />
           ) : (
             <ProfileHeader profile={profile} />
           )}
-          {accountsStatus === 'rejected' ? (
+          {accountsStatus === 'failed' ? (
             <Error errorMessage={accountsError} />
           ) : (
             <Accounts accounts={accounts} />

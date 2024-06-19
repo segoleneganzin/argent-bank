@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
 import Account from '../components/Account';
 
+/**
+ * A React functional component that displays a list of accounts.
+ * @param {Object} props
+ * @param {Object[]} props.accounts
+ * @returns {JSX.Element}
+ */
 const Accounts = ({ accounts }) => {
   return (
     <>
@@ -13,6 +19,12 @@ const Accounts = ({ accounts }) => {
 };
 
 Accounts.propTypes = {
-  accounts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  accounts: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      amount: PropTypes.number,
+      amountDescription: PropTypes.string,
+    })
+  ).isRequired,
 };
 export default Accounts;

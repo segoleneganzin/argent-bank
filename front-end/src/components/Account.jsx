@@ -1,5 +1,15 @@
 import PropTypes from 'prop-types';
 
+/**
+ * A React functional component that displays account information.
+ *
+ * @param {Object} props
+ * @param {Object} props.account
+ * @param {string} props.account.title
+ * @param {number} props.account.amount
+ * @param {string} props.account.amountDescription
+ * @returns {JSX.Element}
+ */
 const Account = ({ account }) => {
   const { title, amount, amountDescription } = account;
   return (
@@ -18,6 +28,10 @@ const Account = ({ account }) => {
   );
 };
 Account.propTypes = {
-  account: PropTypes.object.isRequired,
+  account: PropTypes.shape({
+    title: PropTypes.string,
+    amount: PropTypes.number,
+    amountDescription: PropTypes.string,
+  }).isRequired,
 };
 export default Account;

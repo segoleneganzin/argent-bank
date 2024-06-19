@@ -1,5 +1,18 @@
 import PropTypes from 'prop-types';
 
+/**
+ * A React functional component that displays input.
+ * @param {object} props
+ * @param {string} props.id
+ * @param {string} props.type
+ * @param {string} props.label
+ * @param {string} props.className
+ * @param {string} props.value
+ * @param {boolean} props.checked
+ * @param {func} props.onChange
+ * @param {boolean} props.required
+ * @returns {JSX.Element}
+ */
 const Input = ({
   id,
   type,

@@ -3,6 +3,10 @@ import chatIcon from '../assets/img/icon-chat.png';
 import moneyIcon from '../assets/img/icon-money.png';
 import securityIcon from '../assets/img/icon-security.png';
 
+/**
+ * A React functional component that displays a list of features.
+ * @returns {JSX.Element}
+ */
 const Features = () => {
   return (
     <section className='features'>

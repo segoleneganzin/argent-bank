@@ -5,7 +5,13 @@ import UnloggedMenuListItems from '../components/UnloggedMenuListItems';
 import { selectLogin } from '../features/login/loginSlice';
 import logo from '../assets/img/argentBankLogo.png';
 
+/**
+ * A React functional component that renders the navigation menu.
+ * The menu shows different items based on the user's login status.
+ * @returns {JSX.Element}
+ */
 const Menu = () => {
+  // Get the login state from the Redux store
   const login = useSelector((state) => selectLogin(state));
   return (
     <nav className='nav'>

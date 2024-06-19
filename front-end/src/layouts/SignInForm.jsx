@@ -8,11 +8,18 @@ import {
 } from '../features/login/loginSlice';
 import Input from '../components/Input';
 
+/**
+ * A React functional component that renders the sign-in form.
+ * @returns {JSX.Element}
+ */
 const SignInForm = () => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
+  // Get the login status state from the Redux store
   const status = useSelector((state) => selectLoginStatus(state));
+
+  // Get the login error state from the Redux store
   const error = useSelector((state) => selectLoginError(state));
 
   const [email, setEmail] = useState(localStorage.getItem('userEmail') || '');
@@ -26,6 +33,7 @@ const SignInForm = () => {
     } else {
       localStorage.removeItem('userEmail');
     }
+    // Update the login state from the Redux store
     dispatch(postLoginAsync({ email, password }));
   };
 

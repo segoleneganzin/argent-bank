@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
-
+/**
+ * A React functional component that displays menu when user isn't connected.
+ * It contains a login link
+ * @returns {JSX.Element}
+ */
 const UnloggedMenuListItems = () => {
   return (
     <div>

@@ -5,7 +5,7 @@ import Footer from './Footer';
 /**
  * Application layout.
  * @param {object} props
- * @param {ReactNode} props.children - Child components to be wrapped
+ * @param {ReactNode} props.children
  * @param {string} props.mainClassName
  * @returns {JSX.Element}
  */

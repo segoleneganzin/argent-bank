@@ -20,6 +20,7 @@ export const updateProfileAsync = createAsyncThunk(
   }
 );
 
+// Redux slice for profile state management
 export const profileSlice = createSlice({
   name: 'profile',
   initialState: {
@@ -35,7 +36,7 @@ export const profileSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // manage post async action
+    // Extra reducers to handle async actions (postProfileAsync)
     builder
       .addCase(POST_PROFILE + '/pending', (state) => {
         state.status = 'loading';
@@ -49,7 +50,7 @@ export const profileSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
       })
-      //   manage put async function
+      // Extra reducers to handle async actions (updateProfileAsync)
       .addCase(UPDATE_PROFILE + '/pending', (state) => {
         state.updateStatus = 'loading';
       })

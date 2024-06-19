@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 
 /**
+ * A React functional component that displays feature.
  * @param {object} props
- * @param {string} props.image - Child components to be wrapped
- * @param {string} props.title
+ * @param {string} props.image
  * @param {string} props.alt
+ * @param {string} props.title
  * @param {string} props.content
  * @returns {JSX.Element}
  */

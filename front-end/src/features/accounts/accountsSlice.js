@@ -11,6 +11,7 @@ export const fetchAccountsAsync = createAsyncThunk(
   }
 );
 
+// Redux slice for accounts state management
 export const accountsSlice = createSlice({
   name: 'accounts',
   initialState: {
@@ -20,6 +21,7 @@ export const accountsSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
+    // Extra reducers to handle async actions (fetchUserAccounts)
     builder
       .addCase(GET_ACCOUNTS + '/pending', (state) => {
         state.status = 'loading';

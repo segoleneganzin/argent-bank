@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import UpdateProfileForm from '../components/UpdateProfileForm';
+import UpdateProfileForm from './UpdateProfileForm';
 
+/**
+ * A React functional component that displays profile header.
+ * @param {Object} props
+ * @param {Object[]} props.profile
+ * @returns {JSX.Element}
+ */
 const ProfileHeader = ({ profile }) => {
   const [isOpenUpdateProfileForm, setIsOpenUpdateProfileForm] = useState(false);
   const toggleUpdateProfileForm = () => {
