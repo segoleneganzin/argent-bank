@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { postLogin } from './loginAPI';
+import { postLogin } from '../services/loginAPI';
 
 const POST_LOGIN = 'login/postLogin';
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logout } from '../features/login/loginSlice';
-import { selectProfile } from '../features/profile/profileSlice';
+import { logout } from '../features/loginSlice';
+import { selectProfile } from '../features/profileSlice';
 
 /**
  * A React functional component that displays menu when user is connected.

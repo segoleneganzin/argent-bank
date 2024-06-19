@@ -1,4 +1,4 @@
-import callApi from '../../services/apiClient';
+import callApi from './apiClient';
 
 /**
  * Asynchronous function to perform user login via API.

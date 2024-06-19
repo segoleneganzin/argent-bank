@@ -1,4 +1,4 @@
-import callApi from '../../services/apiClient';
+import callApi from './apiClient';
 
 /**
  * Sends a POST request to get the user's profile.

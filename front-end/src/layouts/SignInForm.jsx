@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { postLoginAsync } from '../features/login/loginSlice';
-import {
-  selectLoginStatus,
-  selectLoginError,
-} from '../features/login/loginSlice';
+import { postLoginAsync } from '../features/loginSlice';
+import { selectLoginStatus, selectLoginError } from '../features/loginSlice';
 import Input from '../components/Input';
 
 /**

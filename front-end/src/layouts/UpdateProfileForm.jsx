@@ -9,8 +9,8 @@ import {
   selectProfileError,
   selectProfileUpdateStatus,
   updateProfileAsync,
-} from '../features/profile/profileSlice';
-import { selectLogin } from '../features/login/loginSlice';
+} from '../features/profileSlice';
+import { selectLogin } from '../features/loginSlice';
 
 /**
  * A React functional component that displays a form for updating the user's first name and last name.

@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import logo from '../assets/img/argentBankLogo.png';
 import LoggedMenuListItems from '../components/LoggedMenuListItems';
 import UnloggedMenuListItems from '../components/UnloggedMenuListItems';
-import { selectLogin } from '../features/login/loginSlice';
-import logo from '../assets/img/argentBankLogo.png';
+import { selectLogin } from '../features/loginSlice';
 
 /**
  * A React functional component that renders the navigation menu.

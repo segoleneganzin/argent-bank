@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { postProfile, updateProfile } from './profileAPI';
+import { postProfile, updateProfile } from '../services/profileAPI';
 
 const POST_PROFILE = 'profile/postProfile';
 const UPDATE_PROFILE = 'profile/updateProfile';

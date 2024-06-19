@@ -6,19 +6,19 @@ import Accounts from '../layouts/Accounts';
 import ProfileHeader from '../layouts/ProfileHeader';
 import Error from '../components/Error';
 import Loader from '../components/Loader';
-import { selectLogin } from '../features/login/loginSlice';
+import { selectLogin } from '../features/loginSlice';
 import {
   postProfileAsync,
   selectProfileStatus,
   selectProfileError,
   selectProfile,
-} from '../features/profile/profileSlice';
+} from '../features/profileSlice';
 import {
   fetchAccountsAsync,
   selectAccounts,
   selectAccountsStatus,
   selectAccountsError,
-} from '../features/accounts/accountsSlice';
+} from '../features/accountsSlice';
 
 /**
  * A React functional component that renders the user profile page.
