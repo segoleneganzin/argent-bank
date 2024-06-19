@@ -25,4 +25,10 @@
       padding: 10px;
     }
   }
+
+  &__error {
+    input {
+      border-color: red;
+    }
+  }
 }

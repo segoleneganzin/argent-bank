@@ -4,7 +4,7 @@ import Features from '../layouts/Features';
 
 const Home = () => {
   return (
-    <PageLayout>
+    <PageLayout mainClassName='main'>
       <>
         <Hero />
         <Features />

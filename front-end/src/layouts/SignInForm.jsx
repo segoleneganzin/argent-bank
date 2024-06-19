@@ -43,7 +43,8 @@ const SignInForm = () => {
         label='Username'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className='input__wrapper'
+        className={`input__wrapper ${status === 'failed' && 'input__error'}`}
+        required={true}
       />
       <Input
         id='password'
@@ -51,7 +52,8 @@ const SignInForm = () => {
         label='Password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className='input__wrapper'
+        className={`input__wrapper ${status === 'failed' && 'input__error'}`}
+        required={true}
       />
       <Input
         id='remember-me'

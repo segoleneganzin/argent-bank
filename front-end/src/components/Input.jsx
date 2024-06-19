@@ -1,6 +1,15 @@
 import PropTypes from 'prop-types';
 
-const Input = ({ id, type, label, className, value, checked, onChange }) => {
+const Input = ({
+  id,
+  type,
+  label,
+  className,
+  value,
+  checked,
+  onChange,
+  required = false,
+}) => {
   return (
     <div className={className}>
       {label && <label htmlFor={id}>{label}</label>}
@@ -10,6 +19,7 @@ const Input = ({ id, type, label, className, value, checked, onChange }) => {
         value={value}
         checked={checked}
         onChange={onChange}
+        required={required}
       />
     </div>
   );
@@ -23,6 +33,7 @@ Input.propTypes = {
   value: PropTypes.string,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
+  required: PropTypes.bool,
 };
 
 export default Input;

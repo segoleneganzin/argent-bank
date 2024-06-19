@@ -20,7 +20,6 @@ const UpdateProfileForm = ({ toggleUpdateProfileForm }) => {
   const login = useSelector((state) => selectLogin(state));
   const status = useSelector((state) => selectProfileUpdateStatus(state));
   const error = useSelector((state) => selectProfileError(state));
-  console.log(status);
 
   useEffect(() => {
     dispatch(resetUpdateStatus());
@@ -45,16 +44,22 @@ const UpdateProfileForm = ({ toggleUpdateProfileForm }) => {
         <Input
           id='firstName'
           type='text'
-          className='input__update left'
+          className={`input__update left ${
+            status === 'failed' && 'input__error'
+          }`}
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
+          required={true}
         />
         <Input
           id='lastName'
           type='text'
-          className='input__update right'
+          className={`input__update right ${
+            status === 'failed' && 'input__error'
+          }`}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          required={true}
         />
 
         <button
