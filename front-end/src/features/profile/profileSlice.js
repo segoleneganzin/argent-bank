@@ -24,7 +24,7 @@ export const updateProfileAsync = createAsyncThunk(
 export const profileSlice = createSlice({
   name: 'profile',
   initialState: {
-    profile: null,
+    profile: JSON.parse(sessionStorage.getItem('profile')) || null,
     status: 'idle',
     error: null,
     updateStatus: 'idle',
@@ -45,6 +45,7 @@ export const profileSlice = createSlice({
         state.status = 'succeeded';
         state.profile = action.payload.body;
         state.error = null;
+        sessionStorage.setItem('profile', JSON.stringify(state.profile));
       })
       .addCase(POST_PROFILE + '/rejected', (state, action) => {
         state.status = 'failed';
@@ -58,6 +59,7 @@ export const profileSlice = createSlice({
         state.updateStatus = 'succeeded';
         state.profile = action.payload.body;
         state.error = null;
+        sessionStorage.setItem('profile', JSON.stringify(state.profile));
       })
       .addCase(UPDATE_PROFILE + '/rejected', (state, action) => {
         state.updateStatus = 'failed';
