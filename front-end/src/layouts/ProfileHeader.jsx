@@ -1,18 +1,34 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import Error from '../components/Error';
+import Loader from '../components/Loader';
 import UpdateProfileForm from './UpdateProfileForm';
-
+import {
+  selectProfileStatus,
+  selectProfileError,
+  selectProfile,
+} from '../features/profileSlice';
 /**
  * A React functional component that displays profile header.
- * @param {Object} props
- * @param {Object[]} props.profile
  * @returns {JSX.Element}
  */
-const ProfileHeader = ({ profile }) => {
+const ProfileHeader = () => {
+  const profile = useSelector((state) => selectProfile(state));
+  const profileStatus = useSelector((state) => selectProfileStatus(state));
+  const profileError = useSelector((state) => selectProfileError(state));
+
   const [isOpenUpdateProfileForm, setIsOpenUpdateProfileForm] = useState(false);
   const toggleUpdateProfileForm = () => {
     setIsOpenUpdateProfileForm(!isOpenUpdateProfileForm);
   };
+
+  if (profileStatus === 'loading') {
+    return <Loader />;
+  }
+
+  if (profileStatus === 'failed') {
+    return <Error errorMessage={profileError} />;
+  }
 
   return (
     profile && (
@@ -41,7 +57,5 @@ const ProfileHeader = ({ profile }) => {
     )
   );
 };
-ProfileHeader.propTypes = {
-  profile: PropTypes.object,
-};
+
 export default ProfileHeader;

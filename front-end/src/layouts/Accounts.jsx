@@ -1,30 +1,40 @@
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Account from '../components/Account';
+import Error from '../components/Error';
+import Loader from '../components/Loader';
+import {
+  selectAccounts,
+  selectAccountsStatus,
+  selectAccountsError,
+} from '../features/accountsSlice';
 
 /**
  * A React functional component that displays a list of accounts.
- * @param {Object} props
- * @param {Object[]} props.accounts
  * @returns {JSX.Element}
  */
-const Accounts = ({ accounts }) => {
+const Accounts = () => {
+  const accounts = useSelector((state) => selectAccounts(state));
+  const accountsStatus = useSelector((state) => selectAccountsStatus(state));
+  const accountsError = useSelector((state) => selectAccountsError(state));
+
+  if (accountsStatus === 'loading') {
+    return <Loader />;
+  }
+
+  if (accountsStatus === 'failed') {
+    return <Error errorMessage={accountsError} />;
+  }
+
   return (
-    <>
-      <h2 className='sr-only'>Accounts</h2>
-      {accounts.map((account, index) => (
-        <Account account={account} key={index} />
-      ))}
-    </>
+    accounts && (
+      <>
+        <h2 className='sr-only'>Accounts</h2>
+        {accounts.map((account, index) => (
+          <Account account={account} key={index} />
+        ))}
+      </>
+    )
   );
 };
 
-Accounts.propTypes = {
-  accounts: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      amount: PropTypes.number,
-      amountDescription: PropTypes.string,
-    })
-  ).isRequired,
-};
 export default Accounts;
