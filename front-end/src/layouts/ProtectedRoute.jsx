@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectLogin,
   selectTokenExpirationDate,
-  logout,
+  renewTokenExpiration,
 } from '../features/loginSlice';
 import { isExpirToken } from '../utils/tokenExpir';
 
@@ -30,7 +30,7 @@ const ProtectedRoute = ({ children }) => {
     if (login && isExpirToken(tokenExpirationDate)) {
       console.log('token expired');
       // set up a token regeneration logic into back ?
-      dispatch(logout());
+      dispatch(renewTokenExpiration());
     }
   }, [login, tokenExpirationDate, dispatch]);
 

@@ -31,6 +31,10 @@ export const loginSlice = createSlice({
       sessionStorage.removeItem('login');
       sessionStorage.removeItem('tokenExpirationDate');
     },
+    renewTokenExpiration: (state) => {
+      // set up a token regeneration logic with backend ?
+      state.tokenExpirationDate = setTokenExpirationDate();
+    },
   },
   extraReducers: (builder) => {
     // Extra reducers to handle async actions (postLoginAsync)
@@ -62,7 +66,7 @@ export const loginSlice = createSlice({
   },
 });
 
-export const { logout } = loginSlice.actions;
+export const { logout, renewTokenExpiration } = loginSlice.actions;
 export const {
   selectLogin,
   selectTokenExpirationDate,
